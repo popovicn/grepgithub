@@ -15,8 +15,6 @@ C_LINE = "\033[37;2m"
 C_MARK = "\033[32m"
 C_RST = "\033[0m"
 
-COLORS = [C_BANNER, C_REPO, C_LINE_NUM, C_LINE, C_MARK, C_RST]
-
 BANNER = """
    {bc}____ ____ ____ ___  {r}____ _ ___ _  _ _  _ ___ {r} 
    {bc}| __ |__/ |___ |__] {r}| __ |  |  |__| |  | |__] {r}
@@ -28,9 +26,6 @@ BANNER = """
 class OutStream:
     def __init__(self, output_file=None):
         self.output_file = open(output_file, 'w') if output_file else None
-
-    def _clean_file_args(self, *args):
-        return [a if a not in COLORS else "" for a in args]
 
     def write(self, content, *args):
         if args:
@@ -166,15 +161,14 @@ if __name__ == '__main__':
         json_out = json.dumps(hits.hits, indent=4)
         out_stream.write(json_out)
     else:
+        # Pretty cli
         try:
             cli_w = os.get_terminal_size().columns
         except OSError:
-            cli_w = 20
-
+            cli_w = 40
         c_blue = "\033[34;1m"
         c_rst = "\033[0m"
         separator = "_" * cli_w
-        # Pretty cli
         repo_ct = 0
         file_ct = 0
         line_ct = 0
