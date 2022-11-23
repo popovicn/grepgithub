@@ -142,9 +142,18 @@ if __name__ == '__main__':
     parser.add_argument('-flang', dest='lang_filter', help='Filter language (eg. Python,C,Java). Use comma for multiple values')
     parser.add_argument('-json', dest='json_output', action='store_true', help='JSON output')
     parser.add_argument('-o', dest='output_file', help='Output file path')
+    parser.add_argument('-m', dest='monochrome', action='store_true', help='Monochrome output')
     args = parser.parse_args()
 
     out_stream = OutStream(output_file=args.output_file)
+
+    if args.monochrome:
+        C_BANNER = ""
+        C_REPO = ""
+        C_LINE_NUM = ""
+        C_LINE = ""
+        C_MARK = ""
+        C_RST = ""
 
     if not args.json_output:
         out_stream.write(BANNER)
