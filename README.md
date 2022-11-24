@@ -27,4 +27,5 @@ optional arguments:
   -flang LANG_FILTER  Filter language (eg. Python,C,Java). Use comma for multiple values
   -json               JSON output
   -o OUTPUT_FILE      Output file path
+  -m                  Monochrome output
 ```
